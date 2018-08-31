@@ -1,12 +1,13 @@
 cmake_minimum_required(VERSION 3.0)
 project(gcurve)
 
-set(DIPACUS_INCLUDE_DIR ext/include CACHE PATH "Path to DIPaCUS include directory.")
-set(DIPACUS_LIB_DIR ext/lib CACHE PATH "Path to DIPaCUS library directory.")
-set(MAGICK++_INCLUDE_DIR /usr/include/GraphicsMagick CACHE PATH "Magick++ include folder.")
+#It expects variables CMAKE_PREFIX_PATH EXTRA_LINK_DIR and BUILD_PATH
 
-link_directories(${DIPACUS_LIB_DIR}
-        cmake-build-debug)
+find_package(DGtal REQUIRED)
+
+link_directories(${EXTRA_LINK_DIR}
+        ${BUILD_PATH}
+        ext/lib)
 
 add_library(gcurve STATIC
         src/GluedCurveRange.cpp src/GluedCurve.cpp)
@@ -14,9 +15,7 @@ add_library(gcurve STATIC
 target_include_directories(gcurve PRIVATE
         include
         ext/include
-        ${MAGICK++_INCLUDE_DIR}
-        ${DIPACUS_INCLUDE_DIR}
-        ${DIPACUS_INCLUDE_DIR})
+        ${DGTAL_INCLUDE_DIRS})
 
 target_link_libraries(gcurve
         -ldipacus-derivates

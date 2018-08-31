@@ -12,7 +12,7 @@ target_include_directories(tests-main PUBLIC
         include
         ../include
         ../ext/include
-        ${MAGICK++_INCLUDE_DIR} )
+        ${DGTAL_INCLUDE_DIRS} )
 
 set_target_properties(tests-main PROPERTIES
         COMPILE_FEATURES "cxx_auto_type;cxx_generic_lambdas"
