@@ -1,5 +1,6 @@
 #include "gcurve/GluedCurve.h"
 
+using namespace GCurve;
 
 GluedCurve::CurveCirculator GluedCurve::walkCirculator(const CurveCirculator c, int w) const
 {

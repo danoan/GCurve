@@ -1,5 +1,7 @@
 #include "gcurve/GluedCurveRange.h"
 
+using namespace GCurve;
+
 GluedCurveRange::GluedCurveRange(const KSpace& KImage,
                          int gcLength,
                          const CurveIterator ciItBegin, 

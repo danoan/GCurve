@@ -1,5 +1,7 @@
 #include "GluedLinelsIterator.h"
 
+using namespace GCurve;
+
 template <typename CurveCirculator,typename LinkIteratorType>
 GluedLinelsIterator<CurveCirculator,LinkIteratorType>::GluedLinelsIterator()
     :myItLb(),
