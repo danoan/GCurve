@@ -13,28 +13,7 @@ link_directories(${EXTRA_LINK_DIR}
         ${BUILD_PATH}
         ext/lib)
 
-
-#STATIC LIBRARY
-add_library(gcurve-st STATIC
-        src/GluedCurveRange.cpp src/GluedCurve.cpp)
-
-target_include_directories(gcurve-st PRIVATE
-        include
-        ext/include
-        ${DGTAL_INCLUDE_DIRS})
-
-target_link_libraries(gcurve-st
-        -ldipacus-derivates
-        -ldipacus-components
-        -ldipacus-base
-        ${DGTAL_LIBRARIES})
-
-set_target_properties(gcurve-st PROPERTIES
-        COMPILE_FEATURES "cxx_auto_type;cxx_generic_lambdas"
-        COMPILE_FLAGS -fext-numeric-literals)
-
-
-
+set(BUILD_TEST OFF CACHE BOOL "Build tests.")
 
 #SHARED LIBRARY
 add_library(gcurve SHARED
@@ -60,10 +39,10 @@ set_target_properties(gcurve PROPERTIES
 install(DIRECTORY include
         DESTINATION ${CMAKE_INSTALL_PREFIX})
 
-install(TARGETS gcurve-st gcurve
+install(TARGETS gcurve
         DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
 
 
-
-
-add_subdirectory(test)
+if (${BUILD_TEST})
+    add_subdirectory(test)
+endif()
