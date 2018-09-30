@@ -1,19 +1,24 @@
 cmake_minimum_required(VERSION 3.0)
 project(gcurve)
 
-#It expects variables
-#CMAKE_PREFIX_PATH: find_[package] macro directories
 #CMAKE_INSTALL_PREFIX: install location
-#EXTRA_LINK_DIR: extra link directories
-#BUILD_PATH: location of build files
+
+message("Project Root Dir: ${CMAKE_SOURCE_DIR}")
+message("Build files at: ${CMAKE_BINARY_DIR}")
+message("Installation at: ${CMAKE_INSTALL_PREFIX}")
 
 find_package(DGtal REQUIRED)
 
-link_directories(${EXTRA_LINK_DIR}
-        ${BUILD_PATH}
-        ext/lib)
+set(BOOST_INCLUDE_DIRS /usr/local/include/boost CACHE PATH "Boost include location path." )
 
-set(BUILD_TEST OFF CACHE BOOL "Build tests.")
+set(DIPACUS_INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/ext/include CACHE PATH "DIPaCUS include location path.")
+set(DIPACUS_LIBS_DIR /usr/local/lib CACHE PATH "DIPaCUS libraries location path.")
+
+set(BUILD_TESTS OFF CACHE BOOL "Build tests.")
+
+link_directories(${CMAKE_BINARY_DIR}
+        ${DIPACUS_LIBS_DIR})
+
 
 #SHARED LIBRARY
 add_library(gcurve SHARED
@@ -21,7 +26,7 @@ add_library(gcurve SHARED
 
 target_include_directories(gcurve PRIVATE
         include
-        ext/include
+        ${DIPACUS_INCLUDE_DIR}
         ${DGTAL_INCLUDE_DIRS})
 
 target_link_libraries(gcurve
@@ -43,6 +48,6 @@ install(TARGETS gcurve
         DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
 
 
-if (${BUILD_TEST})
+if (${BUILD_TESTS})
     add_subdirectory(test)
 endif()
