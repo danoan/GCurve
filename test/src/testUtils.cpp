@@ -14,9 +14,12 @@ CurvesExtractor::CurvesExtractor(Curve& cI,
 
     Image2D imageE(imageI.domain());
     DigitalSet dsE(imageE.domain());
-    DIPaCUS::Representation::ImageAsDigitalSet(dsE,imageI);
+    DIPaCUS::Representation::imageAsDigitalSet(dsE,imageI);
 
-    DIPaCUS::Morphology::Dilate(imageE,dsE,DIPaCUS::Morphology::RECT);
+    typedef DIPaCUS::Morphology::StructuringElement SE;
+    SE se(SE::RECT,1);
+
+    DIPaCUS::Morphology::dilate(imageE,dsE,se);
 
     DIPaCUS::Misc::ComputeBoundaryCurve(imageE,cE,100);
 }
