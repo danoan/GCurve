@@ -5,6 +5,7 @@
 #include <DGtal/geometry/curves/GridCurve.h>
 
 #include "GluedLinelsIterator.h"
+#include "GluedCurveSeed.h"
 #include "GluedCurve.h"
 
 namespace GCurve {
@@ -18,33 +19,14 @@ namespace GCurve {
         typedef DGtal::Circulator<CurveIterator> CurveCirculator;
 
         typedef std::vector<GluedCurve>::const_iterator GluedCurveIterator;
+        typedef std::vector<GluedCurveSeed>::const_iterator GluedCurveSeedIterator;
+        typedef std::vector<LinkLinelType>::const_iterator GluedCurveLinkIterator;
 
         typedef KSpace::Point SCellPointelKey;
 
     private:
         const static int POINTEL_GROUP_INTERNAL_CURVE = 0;
         const static int POINTEL_GROUP_EXTERNAL_CURVE = 1;
-
-        struct GluedCurveSeed {
-            GluedCurveSeed(CurveCirculator c1It,
-                           CurveCirculator c2It,
-                           int gcLength,
-                           GluedCurve::LinkType linkType,
-                           GluedCurve::GluedCurveType gcType,
-                           int numLinkLinels) : c1It(c1It),
-                                                c2It(c2It),
-                                                gcLength(gcLength),
-                                                linkType(linkType),
-                                                gcType(gcType),
-                                                numLinkLinels(numLinkLinels) {};
-
-            CurveCirculator c1It;
-            CurveCirculator c2It;
-            int gcLength;
-            GluedCurve::LinkType linkType;
-            GluedCurve::GluedCurveType gcType;
-            int numLinkLinels;
-        };
 
 
     public:
@@ -57,8 +39,13 @@ namespace GCurve {
                         const CurveIterator ceItEnd);
 
         GluedCurveIterator begin();
-
         GluedCurveIterator end();
+
+        GluedCurveSeedIterator beginSeed() const { return gcsVector.begin();}
+        GluedCurveSeedIterator endSeed() const { return gcsVector.end();}
+
+        GluedCurveLinkIterator beginLink() const { return linkLinels.begin();}
+        GluedCurveLinkIterator endLink() const { return linkLinels.end();}
 
     private:
         void identifyAlmostEnclosingLinels(std::set<SCell> &enclosingLinels,
@@ -75,8 +62,7 @@ namespace GCurve {
         void setPointelGroup(const CurveCirculator &curveCirculator,
                              int pointelGroupId);
 
-
-    public:
+    private:
         int gcLength;
         std::vector<GluedCurve> gciVector;
         std::vector<GluedCurveSeed> gcsVector;
