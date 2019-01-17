@@ -10,6 +10,8 @@ namespace GCurve
         typedef Curve::ConstIterator CurveIterator;
         typedef DGtal::Circulator<CurveIterator> CurveCirculator;
 
+        GluedCurveSeed(){};
+
         GluedCurveSeed(CurveCirculator c1It,
                        CurveCirculator c2It,
                        int gcLength,
