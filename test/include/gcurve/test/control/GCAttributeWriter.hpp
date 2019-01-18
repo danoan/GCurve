@@ -1,9 +1,9 @@
-#include "testUtils.h"
+#include "gcurve/test/model/GCAttributes.h"
 
-using namespace Test;
+using namespace GCurve::Test;
 
 template<typename TIterator>
-void CheckDataWriter::write(TIterator begin, TIterator end)
+void GCAttributeWriter::write(TIterator begin, TIterator end)
 {
     if(!activeFlag) return;
 
@@ -15,7 +15,7 @@ void CheckDataWriter::write(TIterator begin, TIterator end)
 }
 
 template<typename Value>
-void CheckDataWriter::write(Value v)
+void GCAttributeWriter::write(Value v)
 {
     if(!activeFlag) return;
 

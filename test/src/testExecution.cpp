@@ -1,6 +1,6 @@
-#include "testExecution.h"
+#include "gcurve/test/testExecution.h"
 
-using namespace Test;
+using namespace GCurve::Test;
 
 TestExecution::TestExecution()
 {

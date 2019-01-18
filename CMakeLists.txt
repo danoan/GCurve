@@ -26,7 +26,7 @@ add_library(gcurve SHARED
 
 target_include_directories(gcurve PRIVATE
         include
-        ${DIPACUS_INCLUDE_DIR}
+        ${DIPACUS_INCLUDE_DIRS}
         ${DGTAL_INCLUDE_DIRS})
 
 target_link_libraries(gcurve
@@ -50,4 +50,5 @@ install(TARGETS gcurve
 
 if (${BUILD_TESTS})
     add_subdirectory(test)
+    add_subdirectory(examples)
 endif()

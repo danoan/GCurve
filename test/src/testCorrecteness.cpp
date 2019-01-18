@@ -1,11 +1,11 @@
-#include "testCorrecteness.h"
+#include "gcurve/test/testCorrecteness.h"
 
-using namespace Test;
+using namespace GCurve::Test;
 
 TestCorrecteness::TestCorrecteness()
 {
     std::string checkDataFolder = CHECK_DATA_PATH + "/correcteness";
-    CheckDataWriter cdw(generateCheckData);
+    GCAttributeWriter cdw(generateCheckData);
 
     int gcLength = 5;
     int gcTotal=0;
@@ -20,7 +20,7 @@ TestCorrecteness::TestCorrecteness()
 
         cdw.init(checkDataPath);
         GCAttributes checkGCAttr;
-        if(!generateCheckData) checkGCAttr = GCAttributesReader(checkDataPath);
+        if(!generateCheckData) checkGCAttr = read(checkDataPath);
 
         Domain domain;
         Curve cI, cE;
@@ -46,51 +46,10 @@ TestCorrecteness::TestCorrecteness()
 
         cdw.write(estimations.begin(),estimations.end());
         GCAttributes currentGCAttr = GCAttributes(gcTotal,estimations);
+
         if(!generateCheckData) assert(checkGCAttr==currentGCAttr);
 
         cdw.close();
     }
 
-}
-
-TestCorrecteness::GCAttributes::GCAttributes(int gcTotal,
-                                             std::vector<double>& estimations):gcTotal(gcTotal),
-                                                                               estimations(estimations)
-{
-    std::sort(this->estimations.begin(),this->estimations.end());
-};
-
-bool TestCorrecteness::GCAttributes::operator==(const GCAttributes& other) const
-{
-    if(other.gcTotal!=gcTotal) return false;
-
-    for(int i=0;i<estimations.size();++i)
-    {
-        if(estimations[i]!=other.estimations[i]) return false;
-    }
-
-    return true;
-}
-
-TestCorrecteness::GCAttributes TestCorrecteness::GCAttributesReader(std::string filepath)
-{
-    std::ifstream ifs;
-    int totalLines,gcTotal;
-    std::vector<double> estimations;
-
-    ifs.open(filepath);
-
-    ifs >> totalLines;
-    ifs >> gcTotal;
-
-    double v;
-
-    while(!(ifs >> v).eof())
-    {
-        estimations.push_back(v);
-    }
-
-    if((totalLines-2)!=estimations.size()) throw std::runtime_error("Incompatible sizes.");
-
-    return GCAttributes(gcTotal,estimations);
 }

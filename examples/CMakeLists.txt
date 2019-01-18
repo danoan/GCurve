@@ -15,9 +15,9 @@ set_target_properties(examples-main PROPERTIES
 
 target_include_directories(examples-main PRIVATE
         include
-        ../include
-        ../ext/include
-        ${MAGICK++_INCLUDE_DIR})
+        ${CMAKE_SOURCE_DIR}/include
+        ${CMAKE_SOURCE_DIR}/ext/include
+        ${DGTAL_INCLUDE_DIRS})
 
 target_link_libraries(examples-main
         -ldipacus-derivates

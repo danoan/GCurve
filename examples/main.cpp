@@ -3,11 +3,6 @@
 #include <gcurve/GluedCurveRange.h>
 
 typedef DIPaCUS::Misc::ComputeBoundaryCurve::Image2D Image2D;
-typedef DIPaCUS::Misc::ComputeBoundaryCurve::Domain Domain;
-typedef DIPaCUS::Misc::ComputeBoundaryCurve::Curve Curve;
-typedef DIPaCUS::Representation::ImageAsDigitalSet::DigitalSet DigitalSet;
-
-typedef GluedCurveRange::KSpace KSpace;
 
 namespace Examples
 {
@@ -22,8 +17,12 @@ int main()
 
     Image2D dilatedImage(domain);
     DigitalSet ds(domain);
-    DIPaCUS::Representation::ImageAsDigitalSet(ds,image);
-    DIPaCUS::Morphology::Dilate(dilatedImage,ds,DIPaCUS::Morphology::RECT);
+    DIPaCUS::Representation::imageAsDigitalSet(ds,image);
+
+    {
+        using namespace DIPaCUS::Morphology;
+        dilate(dilatedImage,ds,StructuringElement(StructuringElement::RECT,1),1);
+    }
 
     Curve ci;
     DIPaCUS::Misc::ComputeBoundaryCurve(image,ci,100);

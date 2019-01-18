@@ -1,33 +1,34 @@
 #include <iostream>
 
-#include "testExecution.h"
-#include "testCorrecteness.h"
+#include "gcurve/test/testExecution.h"
+#include "gcurve/test/testCorrecteness.h"
 
-namespace Development
+
+namespace GCurve
 {
-    bool makeConvexArcs = false;
-}
+    namespace Test
+    {
+        std::string projectDir = std::string(PROJECT_DIR);
 
-namespace Test
-{
-    std::string projectDir = std::string(PROJECT_DIR);
+        std::string IMAGE_INPUT_PATH = projectDir + "/input_images";
+        std::string IMAGE_OUTPUT_PATH = projectDir + "/output_images";
+        std::string CHECK_DATA_PATH = projectDir + "/check_data";
 
-    std::string IMAGE_INPUT_PATH = projectDir + "/input_images";
-    std::string IMAGE_OUTPUT_PATH = projectDir + "/output_images";
-    std::string CHECK_DATA_PATH = projectDir + "/check_data";
-
-    bool verbose  = true;
-    bool visualOutput = false;
-    bool generateCheckData = false;
+        bool verbose  = true;
+        bool visualOutput = false;
+        bool generateCheckData = false;
+    }
 };
+
+using namespace GCurve::Test;
 
 int main()
 {
     std::cout << "Testing TestExecution" << std::endl;
-    Test::TestExecution();
+    TestExecution();
 
     std::cout << "Testing TestCorrecteness" << std::endl;
-    Test::TestCorrecteness();
+    TestCorrecteness();
 
     return 0;
 }
