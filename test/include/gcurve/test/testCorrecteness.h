@@ -4,6 +4,7 @@
 #include "string"
 #include "vector"
 
+#include <DIPaCUS/base/Shapes.h>
 #include <DIPaCUS/derivates/Misc.h>
 #include "gcurve/GluedCurveRange.h"
 
@@ -30,11 +31,15 @@ namespace GCurve
 
         class TestCorrecteness
         {
+        private:
+            typedef DGtal::Z2i::Domain Domain;
+            typedef DGtal::Z2i::Curve Curve;
+            typedef DGtal::Z2i::KSpace KSpace;
+            typedef DGtal::Z2i::DigitalSet DigitalSet;
+
         public:
             typedef GluedCurveRange::GluedCurveIterator GluedCurveIterator;
             typedef GluedCurve::MyGluedLinelsIterator MyGluedLinelsIterator;
-
-            const std::vector<std::string> imgFilenames = {"square.pgm"};
 
             GCAttributes GCAttributesReader(std::string filepath);
 

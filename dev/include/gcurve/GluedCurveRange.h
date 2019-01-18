@@ -8,21 +8,26 @@
 #include "GluedCurveSeed.h"
 #include "GluedCurve.h"
 
-namespace GCurve {
-    class GluedCurveRange {
+namespace GCurve
+{
+    class GluedCurveRange
+    {
+    private:
+        typedef DGtal::Z2i::Curve Curve;
+        typedef Curve::ConstIterator CurveIterator;
+        typedef DGtal::Z2i::KSpace::Point SCellPointelKey;
+        typedef DGtal::Z2i::SCell SCell;
+        typedef DGtal::Z2i::SCells SCells;
+
     public:
         typedef DGtal::Z2i::KSpace KSpace;
-        typedef DGtal::Z2i::Curve Curve;
         typedef Curve::SCell LinkLinelType;
 
-        typedef Curve::ConstIterator CurveIterator;
         typedef DGtal::Circulator<CurveIterator> CurveCirculator;
 
         typedef std::vector<GluedCurve>::const_iterator GluedCurveIterator;
         typedef std::vector<GluedCurveSeed>::const_iterator GluedCurveSeedIterator;
         typedef std::vector<LinkLinelType>::const_iterator GluedCurveLinkIterator;
-
-        typedef KSpace::Point SCellPointelKey;
 
     private:
         const static int POINTEL_GROUP_INTERNAL_CURVE = 0;

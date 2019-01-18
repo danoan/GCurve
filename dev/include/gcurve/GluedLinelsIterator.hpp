@@ -14,7 +14,7 @@ GluedLinelsIterator<CurveCirculator,LinkIteratorType>::GluedLinelsIterator()
      myFlagIsValid(false),
      iteratorStage(0)
 {
-    element = new Z2i::SCell();
+    element = new SCell();
 }
 
 template <typename CurveCirculator,typename LinkIteratorType>
@@ -33,7 +33,7 @@ GluedLinelsIterator<CurveCirculator,LinkIteratorType>::GluedLinelsIterator(LinkI
             myIt2e(it2e),
             myFlagIsValid(true)
 {
-    element = new Z2i::SCell();
+    element = new SCell();
 
     if(theEnd){
         iteratorStage = 2;
@@ -59,7 +59,7 @@ GluedLinelsIterator<CurveCirculator,LinkIteratorType>::GluedLinelsIterator(const
             iteratorStage(other.iteratorStage),
             currentIterator(other.currentIterator)
 {
-    element = new Z2i::SCell();
+    element = new SCell();
 }
 
 template <typename CurveCirculator,typename LinkIteratorType>
@@ -76,7 +76,7 @@ GluedLinelsIterator<CurveCirculator,LinkIteratorType>& GluedLinelsIterator<Curve
     iteratorStage = other.iteratorStage;
     currentIterator = other.currentIterator;
 
-    element = new Z2i::SCell();
+    element = new SCell();
 
     return *this;
 }

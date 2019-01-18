@@ -3,12 +3,12 @@
 
 #include "DGtal/helpers/StdDefs.h"
 
-using namespace DGtal;
-using namespace DGtal::Z2i;
-
 namespace GCurve {
     template<typename CurveCirculator, typename LinkIteratorType>
-    class CurrentIteratorType {
+    class CurrentIteratorType
+    {
+    private:
+        typedef DGtal::Z2i::SCell SCell;
 
     public:
         CurrentIteratorType() : cit(),
@@ -78,6 +78,9 @@ namespace GCurve {
                     typename TCurveCirculator::value_type,
                     boost::bidirectional_traversal_tag
             > {
+    private:
+        typedef DGtal::Z2i::SCell SCell;
+
     public:
         typedef TLinkIteratorType LinkIteratorType;
         typedef TCurveCirculator CurveCirculator;
@@ -98,7 +101,7 @@ namespace GCurve {
 
         ~GluedLinelsIterator() { delete element; };
 
-        inline Z2i::SCell linkSurfel() { return *myItLb; };
+        inline SCell linkSurfel() { return *myItLb; };
 
         inline LinkIteratorType connectorsBegin() { return myItLb; };
 
@@ -126,7 +129,7 @@ namespace GCurve {
 
         CurrentIteratorType<CurveCirculator, LinkIteratorType> currentIterator;
 
-        Z2i::SCell *element;
+        SCell *element;
 
         char iteratorStage;
 

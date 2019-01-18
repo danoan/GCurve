@@ -18,7 +18,7 @@ target_compile_definitions(tests-main PRIVATE -DPROJECT_DIR=\"${PROJECT_SOURCE_D
 
 target_include_directories(tests-main PUBLIC
         include
-        ${CMAKE_SOURCE_DIR}/include
+        ${CMAKE_SOURCE_DIR}/dev/include
         ${CMAKE_SOURCE_DIR}/ext/include
         ${DGTAL_INCLUDE_DIRS} )
 

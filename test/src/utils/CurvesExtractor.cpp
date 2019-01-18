@@ -2,26 +2,24 @@
 
 using namespace GCurve::Test;
 
-CurvesExtractor::CurvesExtractor(Curve& cI,
-                                 Curve&cE,
+CurvesExtractor::CurvesExtractor(Curve& innerCurve,
+                                 Curve& outerCurve,
                                  Domain& domain,
-                                 std::string imgPath)
+                                 const DigitalSet &ds)
 {
-    Image2D imageI = DGtal::GenericReader<Image2D>::import(imgPath);
-    DIPaCUS::Misc::ComputeBoundaryCurve(imageI,cI,100);
 
-    domain = imageI.domain();
+    Domain dilatedDomain( ds.domain().lowerBound() - DGtal::Z2i::Point(1,1), ds.domain().upperBound()+DGtal::Z2i::Point(1,1));
+    DigitalSet dilatedSquare(dilatedDomain);
 
-    Image2D imageE(imageI.domain());
-    DigitalSet dsE(imageE.domain());
-    DIPaCUS::Representation::imageAsDigitalSet(dsE,imageI);
+    {
+        using namespace DIPaCUS::Morphology;
+        dilate(dilatedSquare,ds,StructuringElement(StructuringElement::RECT,1),1);
+    }
 
-    typedef DIPaCUS::Morphology::StructuringElement SE;
-    SE se(SE::RECT,1);
+    DIPaCUS::Misc::ComputeBoundaryCurve(ds,innerCurve);
+    DIPaCUS::Misc::ComputeBoundaryCurve(dilatedSquare,outerCurve);
 
-    DIPaCUS::Morphology::dilate(imageE,dsE,se);
-
-    DIPaCUS::Misc::ComputeBoundaryCurve(imageE,cE,100);
+    domain = dilatedDomain;
 }
 
 

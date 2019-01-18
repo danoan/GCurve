@@ -1,6 +1,7 @@
 #ifndef GCURVE_CURVESEXTRACTOR_H
 #define GCURVE_CURVESEXTRACTOR_H
 
+#include <DIPaCUS/base/Shapes.h>
 #include <DIPaCUS/derivates/Misc.h>
 
 namespace GCurve
@@ -10,7 +11,6 @@ namespace GCurve
         struct CurvesExtractor
         {
             typedef DIPaCUS::Misc::ComputeBoundaryCurve::Curve Curve;
-            typedef DIPaCUS::Misc::ComputeBoundaryCurve::Image2D Image2D;
             typedef DIPaCUS::Morphology::DigitalSet DigitalSet;
 
             typedef DGtal::Z2i::Domain Domain;
@@ -18,7 +18,7 @@ namespace GCurve
             CurvesExtractor(Curve& cI,
                             Curve&cE,
                             Domain& domain,
-                            std::string imgPath);
+                            const DigitalSet& ds);
         };
     }
 }

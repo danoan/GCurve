@@ -7,7 +7,10 @@ namespace GCurve
 {
     struct GluedCurveSeed
     {
-        typedef Curve::ConstIterator CurveIterator;
+    private:
+        typedef DGtal::Z2i::Curve::ConstIterator CurveIterator;
+
+    public:
         typedef DGtal::Circulator<CurveIterator> CurveCirculator;
 
         GluedCurveSeed(){};

@@ -26,7 +26,11 @@ namespace GCurve
         class TestExecution
         {
         private:
-            const std::vector<std::string> imgFilenames = {"square.pgm"};
+            typedef DGtal::Z2i::Domain Domain;
+            typedef DGtal::Z2i::Curve Curve;
+            typedef DGtal::Z2i::KSpace KSpace;
+            typedef DGtal::Z2i::DigitalSet DigitalSet;
+
         public:
             TestExecution();
         };

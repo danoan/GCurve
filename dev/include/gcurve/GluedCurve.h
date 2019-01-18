@@ -7,10 +7,11 @@ namespace GCurve
 {
     class GluedCurve
     {
-    public:
+    private:
         typedef DGtal::Z2i::Curve Curve;
         typedef Curve::SCell SCell;
 
+    public:
         typedef DGtal::Circulator<Curve::ConstIterator> CurveCirculator;
         typedef std::vector<SCell>::const_iterator LinkLinelsIterator;
 
