@@ -23,7 +23,7 @@ set_target_properties(gcurve PROPERTIES
 
 
 
-install(DIRECTORY dev/include
+install(DIRECTORY include
         DESTINATION ${CMAKE_INSTALL_PREFIX})
 
 install(TARGETS gcurve
