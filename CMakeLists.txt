@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.0)
 project(gcurve)
 
 #CMAKE_INSTALL_PREFIX: install location
+set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 message("Project Root Dir: ${CMAKE_SOURCE_DIR}")
 message("Build files at: ${CMAKE_BINARY_DIR}")
@@ -20,6 +22,7 @@ set(BUILD_TESTS OFF CACHE BOOL "Build tests.")
 link_directories(
         ${CMAKE_BINARY_DIR}/dev
         ${DIPACUS_LIBS_DIR}
+        ${BOOST_LIBS_DIR}
         ${CMAKE_PREFIX_PATH})
 
 
