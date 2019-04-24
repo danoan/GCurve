@@ -24,8 +24,8 @@ Domain curveExtractor(Curve& innerCurve, Curve& outerCurve)
         dilate(dilatedSquare,square,StructuringElement(StructuringElement::RECT,1),1);
     }
 
-    DIPaCUS::Misc::ComputeBoundaryCurve(square,innerCurve);
-    DIPaCUS::Misc::ComputeBoundaryCurve(dilatedSquare,outerCurve);
+    DIPaCUS::Misc::computeBoundaryCurve(innerCurve,square);
+    DIPaCUS::Misc::computeBoundaryCurve(outerCurve,dilatedSquare);
 
     return domain;
 }

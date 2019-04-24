@@ -10,10 +10,11 @@ namespace GCurve
     {
         struct CurvesExtractor
         {
-            typedef DIPaCUS::Misc::ComputeBoundaryCurve::Curve Curve;
-            typedef DIPaCUS::Morphology::DigitalSet DigitalSet;
-
             typedef DGtal::Z2i::Domain Domain;
+            typedef DGtal::Z2i::Curve Curve;
+            typedef DGtal::Z2i::DigitalSet DigitalSet;
+
+
 
             CurvesExtractor(Curve& cI,
                             Curve&cE,
