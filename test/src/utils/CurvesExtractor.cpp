@@ -16,8 +16,8 @@ CurvesExtractor::CurvesExtractor(Curve& innerCurve,
         dilate(dilatedSquare,ds,StructuringElement(StructuringElement::RECT,1),1);
     }
 
-    DIPaCUS::Misc::ComputeBoundaryCurve(ds,innerCurve);
-    DIPaCUS::Misc::ComputeBoundaryCurve(dilatedSquare,outerCurve);
+    DIPaCUS::Misc::computeBoundaryCurve(innerCurve,ds);
+    DIPaCUS::Misc::computeBoundaryCurve(outerCurve,dilatedSquare);
 
     domain = dilatedDomain;
 }
