@@ -18,6 +18,7 @@ set(DIPACUS_INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/ext/include CACHE PATH "DIPaCUS inc
 set(DIPACUS_LIBS_DIR /usr/local/lib CACHE PATH "DIPaCUS libraries location path.")
 
 set(BUILD_TESTS OFF CACHE BOOL "Build tests.")
+set(CREATE_SHARED_LIBRARIES OFF CACHE BOOL "Create shared libraries. If off, create static libraries.")
 
 link_directories(
         ${CMAKE_BINARY_DIR}/dev

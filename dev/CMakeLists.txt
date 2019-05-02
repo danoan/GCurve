@@ -1,8 +1,12 @@
 cmake_minimum_required(VERSION 3.0)
 project(gcurve_lib)
 
-#SHARED LIBRARY
-add_library(gcurve SHARED
+set(LIBRARY_ACTION "STATIC")
+if(${CREATE_SHARED_LIBRARIES})
+    set(LIBRARY_ACTION "SHARED")
+endif()
+
+add_library(gcurve ${LIBRARY_ACTION}
         src/GluedCurveRange.cpp
         src/GluedCurve.cpp)
 
@@ -27,4 +31,5 @@ install(DIRECTORY include
         DESTINATION ${CMAKE_INSTALL_PREFIX})
 
 install(TARGETS gcurve
-        DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
+        DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
