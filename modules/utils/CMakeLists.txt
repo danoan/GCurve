@@ -17,7 +17,7 @@ target_include_directories(gcurve-utils PRIVATE
 
 target_link_libraries(gcurve-utils
         -ldipacus-derivates
-        -ldipacus-compponents
+        -ldipacus-components
         -ldipacus-base
         ${DGTAL_LIBRARIES})
 
