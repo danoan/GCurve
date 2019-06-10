@@ -1,0 +1,7 @@
+.idea
+output
+ext
+ext-build
+cmake-build-debug
+cmake-build-release
+update.sh

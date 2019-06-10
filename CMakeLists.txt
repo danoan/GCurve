@@ -21,16 +21,18 @@ set(BUILD_TESTS OFF CACHE BOOL "Build tests.")
 set(CREATE_SHARED_LIBRARIES OFF CACHE BOOL "Create shared libraries. If off, create static libraries.")
 
 link_directories(
-        ${CMAKE_BINARY_DIR}/dev
+        ${CMAKE_BINARY_DIR}/modules/core
+        ${CMAKE_BINARY_DIR}/modules/utils
         ${DIPACUS_LIBS_DIR}
         ${BOOST_LIBS_DIR}
         ${CMAKE_PREFIX_PATH})
 
 
-add_subdirectory(dev)
+add_subdirectory(modules/core)
+add_subdirectory(modules/utils)
 
 
 if (${BUILD_TESTS})
-    add_subdirectory(test)
-    add_subdirectory(examples)
+    add_subdirectory(lab/test)
+    add_subdirectory(lab/examples)
 endif()
