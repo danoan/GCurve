@@ -135,8 +135,9 @@ namespace GCurve {
 
         bool myFlagIsValid;
     };
+    
+    #include "Iterator.hpp"
 }
-#include "Iterator.hpp"
 
 
 #endif //GLUED_CURVE_GLUEDCURVEITERATOR_H

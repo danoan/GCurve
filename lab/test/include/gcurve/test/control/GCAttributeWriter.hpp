@@ -1,6 +1,4 @@
-#include "gcurve/test/model/GCAttributes.h"
-
-using namespace GCurve::Test;
+#include "gcurve/test/control/GCAttributeWriter.h"
 
 template<typename TIterator>
 void GCAttributeWriter::write(TIterator begin, TIterator end)

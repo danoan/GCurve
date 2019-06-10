@@ -1,7 +1,5 @@
 #include "Iterator.h"
 
-using namespace GCurve;
-
 template <typename CurveCirculator,typename LinkIteratorType>
 Iterator<CurveCirculator,LinkIteratorType>::Iterator()
     :myItLb(),

@@ -18,6 +18,8 @@ namespace GCurve
 
         enum SeedType{MainInner,InnerMain,MainOuter,OuterMain};
 
+        Seed(){}
+
         Seed(CurveCirculator outCirculator,
                        CurveCirculator inCirculator,
                        LinkLinel linkLinel,

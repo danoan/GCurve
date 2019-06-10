@@ -32,9 +32,9 @@ namespace GCurve
             std::string tempFilepath,finalFilepath;
             std::ofstream ofs;
         };
+
+        #include "GCAttributeWriter.hpp"
     }
 }
-
-#include "GCAttributeWriter.hpp"
 
 #endif //GCURVE_GCATTRIBUTEWRITER_H

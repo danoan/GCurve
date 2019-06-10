@@ -8,10 +8,9 @@
 #include "gcurve/Range.h"
 #include "gcurve/utils/displayUtils.h"
 
-
-
 std::string projectDir = PROJECT_DIR;
 
+using namespace GCurve;
 using namespace DGtal::Z2i;
 
 
