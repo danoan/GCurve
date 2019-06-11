@@ -14,6 +14,22 @@ using namespace GCurve;
 using namespace DGtal::Z2i;
 
 
+DigitalSet rectangle(int width, int height)
+{
+    Point border(5,5);
+    Domain domain(Point(0,0)-border,Point(width,height)+border);
+    DigitalSet ds(domain);
+    for(int i=0;i<width;++i)
+    {
+        for(int j=0;j<height;++j)
+        {
+            ds.insert(Point(i,j));
+        }
+    }
+
+    return ds;
+}
+
 int main(int argc, char* argv[])
 {
     std::string outputFilePath=projectDir+"/output/drawGCurves";
@@ -26,7 +42,7 @@ int main(int argc, char* argv[])
     }
 
 
-    DigitalSet square = DIPaCUS::Shapes::square();
+    DigitalSet square = rectangle(10,2);//DIPaCUS::Shapes::square();
     const Domain &domain = square.domain();
 
     KSpace KImage;
@@ -38,17 +54,18 @@ int main(int argc, char* argv[])
     int gcCount=0;
     for(auto itGC=gcRange.begin();itGC!=gcRange.end();++itGC,++gcCount)
     {
+        board.clear();
         Utils::drawCurve(board,
                 DGtal::Color::Black,
                 DGtal::Color::Silver,
                 itGC->seed.inCirculatorBegin,
-                itGC->seed.inCirculatorEnd);
+                itGC->seed.inCirculatorBegin);
 
         Utils::drawCurve(board,
                 DGtal::Color::Black,
                          DGtal::Color::Silver,
                          itGC->seed.outCirculatorBegin,
-                         itGC->seed.outCirculatorEnd);
+                         itGC->seed.outCirculatorBegin);
 
         Utils::drawCurve(board,
                 DGtal::Color::Black,

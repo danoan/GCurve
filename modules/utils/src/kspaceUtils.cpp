@@ -1,5 +1,5 @@
 #include "gcurve/utils/kspaceUtils.h"
-
+#include <DGtal/io/boards/Board2D.h>
 namespace GCurve
 {
     namespace Utils
@@ -27,32 +27,12 @@ namespace GCurve
                 erode(eroded,ds,StructuringElement(StructuringElement::RECT,1),1);
             }
 
-            DigitalSet boundary(domain);
-            DIPaCUS::Misc::digitalBoundary<DIPaCUS::Neighborhood::FourNeighborhoodPredicate>(boundary,ds);
+            DGtal::Board2D board;
+            board << eroded;
+            board.saveEPS("eroded.eps");
+            if(eroded.size()>0)
+                DIPaCUS::Misc::computeBoundaryCurve(innerCurve,eroded);
 
-            Point neigh[4] = {Point(1,0),Point(-1,0),Point(0,1),Point(0,-1)};
-            KSpace kspace;
-            kspace.init(domain.lowerBound(),domain.upperBound(),true);
-            for(auto it=boundary.begin();it!=boundary.end();++it)
-            {
-                int n=0;
-                bool adjacent=false;
-                Point adjInBoundary;
-                for(int i=0;i<4;++i)
-                {
-                    Point np = *it + neigh[i];
-                    if(eroded(np)) ++n;
-                    if(n>2)
-                    {
-                        adjacent=true;
-                        break;
-                    }
-                }
-
-                if(!adjacent) eroded.insert(*it);
-            }
-
-            DIPaCUS::Misc::computeBoundaryCurve(innerCurve,eroded);
         }
     }
 }

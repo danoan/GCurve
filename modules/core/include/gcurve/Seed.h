@@ -26,11 +26,31 @@ namespace GCurve
                        unsigned int gcLength,
                        SeedType type):type(type)
         {
-            outCirculatorBegin = Utils::walkIterator(outCirculator,-(gcLength-1) );
+            initSeed(outCirculator,inCirculator,linkLinel,gcLength,gcLength,type);
+        }
+
+        Seed(CurveCirculator outCirculator,
+             CurveCirculator inCirculator,
+             LinkLinel linkLinel,
+             unsigned int gcLengthOut,
+             unsigned int gcLengthIn,
+             SeedType type):type(type)
+        {
+            initSeed(outCirculator,inCirculator,linkLinel,gcLengthOut,gcLengthIn,type);
+        }
+
+        void initSeed(CurveCirculator outCirculator,
+                      CurveCirculator inCirculator,
+                      LinkLinel linkLinel,
+                      unsigned int gcLengthOut,
+                      unsigned int gcLengthIn,
+                      SeedType type)
+        {
+            outCirculatorBegin = Utils::walkIterator(outCirculator,-(gcLengthOut-1) );
             outCirculatorEnd = outCirculator;
 
             inCirculatorBegin = inCirculator;
-            inCirculatorEnd = Utils::walkIterator(inCirculator,gcLength);
+            inCirculatorEnd = Utils::walkIterator(inCirculator,gcLengthIn);
 
             linkLinels.push_back(linkLinel);
         }

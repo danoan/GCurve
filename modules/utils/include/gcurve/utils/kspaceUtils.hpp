@@ -29,6 +29,8 @@ void mCurvePointels(std::insert_iterator<TContainer>& out,const KSpace& kspace, 
 template<class TContainer>
 void mPointelCirculator(std::insert_iterator<TContainer>& out, const KSpace& kspace, const Curve& curve)
 {
+    if(curve.size()==0) return;
+
     CurveCirculator circ(curve.begin(),curve.begin(),curve.end());
     CurveCirculator it = circ;
     do

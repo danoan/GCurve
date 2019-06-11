@@ -38,17 +38,22 @@ namespace GCurve
     public:
         Range(const DigitalSet& ds, unsigned int gcLength);
 
-        inline SeedIterator beginSeed(){ return vectorOfSeeds.begin(); }
-        inline SeedIterator endSeed(){ return vectorOfSeeds.end(); }
+        inline SeedIterator beginSeed() const{ return vectorOfSeeds.begin(); }
+        inline SeedIterator endSeed() const{ return vectorOfSeeds.end(); }
 
-        inline GluedCurveIterator begin(){ return gluedCurveVector.begin(); }
-        inline GluedCurveIterator end(){ return gluedCurveVector.end(); }
+        inline GluedCurveIterator begin() const{ return gluedCurveVector.begin(); }
+        inline GluedCurveIterator end() const{ return gluedCurveVector.end(); }
 
 
     private:
         SCell findLinkLinel(Point sourceCoord, Point targetCoord);
         bool checkSeed(const Seed& seed);
         void generateSeeds();
+        void createSeed(const CurveCirculator& mainCirc,
+                        const CurveCirculator& auxCirc,
+                        const Range::SCell& linkLinel,
+                        Seed::SeedType seedType,
+                        unsigned int totalLength);
 
     public:
         KSpace kspace;

@@ -79,6 +79,25 @@ bool Range::checkSeed(const Seed& seed)
     return true;
 }
 
+void Range::createSeed(const CurveCirculator& mainCirc,
+                       const CurveCirculator& auxCirc,
+                       const Range::SCell& linkLinel,
+                       Seed::SeedType seedType,
+                       unsigned int totalLength)
+{
+    unsigned int outLength = 1;
+    Seed seed(mainCirc,
+              auxCirc,
+                linkLinel,
+            outLength,
+            totalLength-outLength,
+            seedType);
+
+    if (checkSeed(seed))
+        vectorOfSeeds.push_back(seed);
+
+}
+
 void Range::generateSeeds()
 {
     Point neighborhood[4] = {Point(2,0),Point(-2,0),Point(0,2),Point(0,-2)};
@@ -89,49 +108,23 @@ void Range::generateSeeds()
 
         Point sourceCoord = source.preCell().coordinates;
         Point targetCoord = target.preCell().coordinates;
+
+        unsigned int totalLength = 2*gcLength;
         for(int i=0;i<4;++i)
         {
             Point np = targetCoord + neighborhood[i];
             if(innerPS.find(np)!=innerPS.end())
             {
 
-                Seed s1( mainPC[sourceCoord],
-                         innerPC[np],
-                         findLinkLinel(targetCoord, np),
-                         gcLength,
-                         Seed::MainInner);
+                createSeed(mainPC[sourceCoord],innerPC[np],findLinkLinel(targetCoord, np),Seed::MainInner,totalLength);
+                createSeed(innerPC[np]-1,mainPC[targetCoord],findLinkLinel(np, targetCoord),Seed::InnerMain,totalLength);
 
-                if(checkSeed(s1))
-                    vectorOfSeeds.push_back(s1);
-
-                Seed s2( innerPC[np]-1,
-                         mainPC[targetCoord],
-                         findLinkLinel(np, targetCoord),
-                         gcLength,
-                         Seed::InnerMain);
-
-                if(checkSeed(s2))
-                    vectorOfSeeds.push_back(s2);
             }
             if(outerPS.find(np)!=outerPS.end())
             {
-                Seed s1( mainPC[sourceCoord],
-                         outerPC[np],
-                         findLinkLinel(targetCoord, np),
-                         gcLength,
-                         Seed::MainOuter);
+                createSeed(mainPC[sourceCoord],outerPC[np],findLinkLinel(targetCoord, np),Seed::MainOuter,totalLength);
+                createSeed(outerPC[np]-1,mainPC[targetCoord],findLinkLinel(np, targetCoord),Seed::OuterMain,totalLength);
 
-                if(checkSeed(s1))
-                    vectorOfSeeds.push_back(s1);
-
-                Seed s2(outerPC[np]-1,
-                        mainPC[targetCoord],
-                        findLinkLinel(np, targetCoord),
-                        gcLength,
-                        Seed::OuterMain);
-
-                if(checkSeed(s2))
-                    vectorOfSeeds.push_back(s2);
             }
         }
     }
