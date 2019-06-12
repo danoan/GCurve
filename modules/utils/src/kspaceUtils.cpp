@@ -27,9 +27,6 @@ namespace GCurve
                 erode(eroded,ds,StructuringElement(StructuringElement::RECT,1),1);
             }
 
-            DGtal::Board2D board;
-            board << eroded;
-            board.saveEPS("eroded.eps");
             if(eroded.size()>0)
                 DIPaCUS::Misc::computeBoundaryCurve(innerCurve,eroded);
 

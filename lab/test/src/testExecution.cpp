@@ -20,4 +20,11 @@ TestExecution::TestExecution()
 
     assert(size>0);
 
+    DGtal::Z2i::Curve curve;
+    for(auto it=gcr.begin();it!=gcr.end();++it)
+    {
+        curve.initFromSCellsRange(it->begin(),it->end());
+    }
+
+
 }
