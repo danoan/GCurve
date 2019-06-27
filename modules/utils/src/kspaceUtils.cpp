@@ -11,7 +11,7 @@ namespace GCurve
             DigitalSet dilated(domain);
             {
                 using namespace DIPaCUS::Morphology;
-                dilate(dilated,ds,StructuringElement(StructuringElement::CROSS,1),1);
+                dilate(dilated,ds,StructuringElement(StructuringElement::RECT,1),1);
             }
 
             DIPaCUS::Misc::computeBoundaryCurve(outerCurve,dilated);
