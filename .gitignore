@@ -1,0 +1,6 @@
+.idea
+output
+cmake-build-debug
+cmake-build-release
+ext-projects/build
+ext-projects/source
