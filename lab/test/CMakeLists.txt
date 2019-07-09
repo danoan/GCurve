@@ -10,7 +10,11 @@ add_executable(tests-main
         src/testExecution.cpp
         src/testCorrecteness.cpp)
 
-add_dependencies(tests-main dipacus gcurve)
+if (${USE_LOCAL_REPOSITORIES})
+    add_dependencies(tests-main dipacus gcurve)
+else()
+    add_dependencies(tests-main gcurve)
+endif()
 
 target_compile_definitions(tests-main PRIVATE -DPROJECT_DIR=\"${PROJECT_SOURCE_DIR}\")
 

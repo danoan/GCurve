@@ -9,8 +9,9 @@ message("Project Root Dir: ${CMAKE_SOURCE_DIR}")
 message("Build files at: ${CMAKE_BINARY_DIR}")
 message("Installation at: ${CMAKE_INSTALL_PREFIX}")
 
-include(ExternalProject)
-include(ext-projects/ExtProjects.cmake)
+if (${USE_LOCAL_REPOSITORIES})
+    include(ext-projects/ExtProjects.cmake)
+endif()
 
 find_package(DGtal REQUIRED)
 
