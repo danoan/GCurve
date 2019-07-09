@@ -9,13 +9,16 @@ message("Project Root Dir: ${CMAKE_SOURCE_DIR}")
 message("Build files at: ${CMAKE_BINARY_DIR}")
 message("Installation at: ${CMAKE_INSTALL_PREFIX}")
 
+include(ExternalProject)
+include(ext-projects/ExtProjects.cmake)
+
 find_package(DGtal REQUIRED)
 
 set(BOOST_INCLUDE_DIRS /usr/local/include/boost CACHE PATH "Boost include location path." )
 set(BOOST_LIBS_DIR /usr/local/lib CACHE PATH "Boost libraries location path." )
 
-set(DIPACUS_INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/ext/include CACHE PATH "DIPaCUS include location path.")
-set(DIPACUS_LIBS_DIR /usr/local/lib CACHE PATH "DIPaCUS libraries location path.")
+set(DIPACUS_INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/ext-projects/build/include CACHE PATH "DIPaCUS include location path.")
+set(DIPACUS_LIBS_DIR ${CMAKE_SOURCE_DIR}/ext-projects/build/lib CACHE PATH "DIPaCUS libraries location path.")
 
 set(BUILD_TESTS OFF CACHE BOOL "Build tests.")
 set(CREATE_SHARED_LIBRARIES OFF CACHE BOOL "Create shared libraries. If off, create static libraries.")

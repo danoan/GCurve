@@ -109,7 +109,7 @@ void Range::generateSeeds()
         Point sourceCoord = source.preCell().coordinates;
         Point targetCoord = target.preCell().coordinates;
 
-        unsigned int totalLength = 2*gcLength;
+        unsigned int totalLength = gcLength+1;
         for(int i=0;i<4;++i)
         {
             Point np = targetCoord + neighborhood[i];

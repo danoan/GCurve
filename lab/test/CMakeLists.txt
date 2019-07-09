@@ -10,13 +10,15 @@ add_executable(tests-main
         src/testExecution.cpp
         src/testCorrecteness.cpp)
 
+add_dependencies(tests-main dipacus gcurve)
+
 target_compile_definitions(tests-main PRIVATE -DPROJECT_DIR=\"${PROJECT_SOURCE_DIR}\")
 
 target_include_directories(tests-main PUBLIC
         include
         ${CMAKE_SOURCE_DIR}/modules/core/include
         ${CMAKE_SOURCE_DIR}/modules/utils/include
-        ${CMAKE_SOURCE_DIR}/ext/include
+        ${DIPACUS_INCLUDE_DIRS}
         ${DGTAL_INCLUDE_DIRS} )
 
 set_target_properties(tests-main PROPERTIES

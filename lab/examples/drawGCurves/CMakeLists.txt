@@ -10,7 +10,7 @@ target_include_directories(examples-drawGCurves PRIVATE
         include
         ${CMAKE_SOURCE_DIR}/modules/core/include
         ${CMAKE_SOURCE_DIR}/modules/utils/include
-        ${CMAKE_SOURCE_DIR}/ext/include
+        ${DIPACUS_INCLUDE_DIRS}
         ${DGTAL_INCLUDE_DIRS}
         ${BOOST_INCLUDE_DIRS})
 
