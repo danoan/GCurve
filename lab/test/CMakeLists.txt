@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.2)
 project(test-gcurve)
 
 add_executable(tests-main
@@ -10,7 +10,7 @@ add_executable(tests-main
         src/testExecution.cpp
         src/testCorrecteness.cpp)
 
-if (${USE_LOCAL_REPOSITORIES})
+if (${USE_REMOTE_REPOSITORIES})
     add_dependencies(tests-main dipacus gcurve)
 else()
     add_dependencies(tests-main gcurve)
