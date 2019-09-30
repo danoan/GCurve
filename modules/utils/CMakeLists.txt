@@ -10,6 +10,13 @@ endif()
 add_library(gcurve-utils ${LIBRARY_ACTION}
         src/kspaceUtils.cpp)
 
+if (${USE_REMOTE_REPOSITORIES})
+    add_dependencies(gcurve-utils dipacus)
+endif()
+
+set_target_properties(gcurve-utils PROPERTIES
+        VERSION ${VERSION_GCURVE_UTILS})
+
 target_include_directories(gcurve-utils PRIVATE
         include
         ${DIPACUS_INCLUDE_DIRS}

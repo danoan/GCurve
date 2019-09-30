@@ -10,7 +10,13 @@ add_library(gcurve ${LIBRARY_ACTION}
         src/Range.cpp
         src/GluedCurve.cpp)
 
-add_dependencies(gcurve gcurve-utils)
+
+if (${USE_REMOTE_REPOSITORIES})
+    add_dependencies(gcurve dipacus gcurve-utils)
+else()
+    add_dependencies(gcurve gcurve-utils)
+endif()
+
 
 target_include_directories(gcurve PRIVATE
         include
@@ -26,7 +32,8 @@ target_link_libraries(gcurve
 
 set_target_properties(gcurve PROPERTIES
         COMPILE_FEATURES "cxx_auto_type;cxx_generic_lambdas"
-        COMPILE_FLAGS -fext-numeric-literals)
+        COMPILE_FLAGS -fext-numeric-literals
+        VERSION ${VERSION_GCURVE_CORE})
 
 
 

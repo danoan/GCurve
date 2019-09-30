@@ -4,6 +4,8 @@ set(CMAKE_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}/install")
 set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
+set(EXTPROJECTS_SOURCE_DIR ${CMAKE_SOURCE_DIR}/ext-projects/source)
+
 if (${CMAKE_BUILD_TYPE} STREQUAL Release)
     set(EXTPROJECTS_BUILD_DIR ${CMAKE_SOURCE_DIR}/ext-projects/cmake-build-release)
 else()
@@ -21,6 +23,9 @@ set(CREATE_SHARED_LIBRARIES ON CACHE BOOL "Create shared libraries. If off, crea
 set(USE_REMOTE_REPOSITORIES ON CACHE BOOL "Pull external repositories from GitHub.")
 
 project(gcurve)
+
+set(VERSION_GCURVE_CORE master)
+set(VERSION_GCURVE_UTILS master)
 
 message("Project Root Dir: ${CMAKE_SOURCE_DIR}")
 message("Build files at: ${CMAKE_BINARY_DIR}")
