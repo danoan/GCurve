@@ -101,7 +101,7 @@ int main(int argc, char* argv[])
     DigitalSet* myShapePtr;
     if(id.shapeType == InputData::Rectangle)
     {
-        myShapePtr = new DigitalSet(rectangle(10,2));
+        myShapePtr = new DigitalSet(rectangle(10,4));
     }else
     {
         typedef DIPaCUS::Representation::Image2D Image2D;
@@ -119,27 +119,51 @@ int main(int argc, char* argv[])
     DGtal::Board2D board;
     GCurve::Range gcRange(myShape,id.gcLength);
 
+    GCurve::Seed mainInnerSeed;
+    GCurve::Seed mainOuterSeed;
+    for(auto it=gcRange.begin();it!=gcRange.end();++it)
+    {
+        if(it->seed.type==GCurve::Seed::MainInner)
+        {
+            mainInnerSeed = it->seed;
+            break;
+        }
+    }
+
+    for(auto it=gcRange.begin();it!=gcRange.end();++it)
+    {
+        if(it->seed.type==GCurve::Seed::MainOuter)
+        {
+            mainOuterSeed = it->seed;
+            break;
+        }
+    }
+
     int gcCount=0;
     for(auto itGC=gcRange.begin();itGC!=gcRange.end();++itGC,++gcCount)
     {
         board.clear();
-        Utils::drawCurve(board,
-                DGtal::Color::Black,
-                DGtal::Color::Silver,
-                itGC->seed.inCirculatorBegin,
-                itGC->seed.inCirculatorBegin);
+        board << *myShapePtr;
 
-        Utils::drawCurve(board,
-                DGtal::Color::Black,
-                         DGtal::Color::Silver,
-                         itGC->seed.outCirculatorBegin,
-                         itGC->seed.outCirculatorBegin);
+        auto mainC = mainInnerSeed.inCirculatorBegin;
+        auto innC = mainInnerSeed.outCirculatorBegin;
+        auto outC = mainOuterSeed.inCirculatorBegin;
+
+        GCurve::Utils::drawCurve(board,DGtal::Color::Silver,DGtal::Color::Silver,mainC,mainC);
+        GCurve::Utils::drawCurve(board,DGtal::Color::Silver,DGtal::Color::Silver,innC,innC);
+        GCurve::Utils::drawCurve(board,DGtal::Color::Silver,DGtal::Color::Silver,outC,outC);
 
         Utils::drawCurve(board,
                 DGtal::Color::Black,
                          DGtal::Color::Red,
                          itGC->begin(),
                          itGC->end());
+
+
+        GCurve::Utils::drawCurve(board,DGtal::Color::Green,DGtal::Color::Green,
+                                 itGC->seed.inCirculatorBegin,
+                                 itGC->seed.inCirculatorEnd);
+
 
         board.saveSVG( (id.outputFolder+"/"+std::to_string(gcCount)+".svg").c_str());
     }
