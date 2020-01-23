@@ -15,6 +15,8 @@ set(CREATE_SHARED_LIBRARIES ON CACHE BOOL "Create shared libraries. If off, crea
 set(USE_REMOTE_REPOSITORIES ON CACHE BOOL "Pull external repositories from GitHub.")
 
 project(gcurve)
+set(VERSION_GCURVE_CORE v0.1)
+set(VERSION_GCURVE_UTILS v0.1)
 
 message("Project Root Dir: ${CMAKE_SOURCE_DIR}")
 message("Build files at: ${CMAKE_BINARY_DIR}")

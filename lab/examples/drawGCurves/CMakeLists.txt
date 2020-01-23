@@ -14,6 +14,9 @@ target_include_directories(examples-drawGCurves PRIVATE
         ${DGTAL_INCLUDE_DIRS}
         ${BOOST_INCLUDE_DIRS})
 
+target_link_directories(examples-drawGCurves PRIVATE
+        ${BOOST_LIBS_DIR})
+
 target_link_libraries(examples-drawGCurves
         -lgcurve
         -lgcurve-utils

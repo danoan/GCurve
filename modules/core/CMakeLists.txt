@@ -26,7 +26,8 @@ target_link_libraries(gcurve
 
 set_target_properties(gcurve PROPERTIES
         COMPILE_FEATURES "cxx_auto_type;cxx_generic_lambdas"
-        COMPILE_FLAGS -fext-numeric-literals)
+        COMPILE_FLAGS -fext-numeric-literals
+        VERSION ${VERSION_GCURVE_CORE})
 
 
 

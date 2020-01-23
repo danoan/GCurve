@@ -10,6 +10,10 @@ endif()
 add_library(gcurve-utils ${LIBRARY_ACTION}
         src/kspaceUtils.cpp)
 
+if (${USE_REMOTE_REPOSITORIES})
+    add_dependencies(gcurve-utils dipacus)
+endif()
+
 target_include_directories(gcurve-utils PRIVATE
         include
         ${DIPACUS_INCLUDE_DIRS}
@@ -20,6 +24,9 @@ target_link_libraries(gcurve-utils
         -ldipacus-components
         -ldipacus-base
         ${DGTAL_LIBRARIES})
+
+set_target_properties(gcurve-utils PROPERTIES
+        VERSION ${VERSION_GCURVE_UTILS})
 
 install(DIRECTORY include
         DESTINATION ${CMAKE_INSTALL_PREFIX})
