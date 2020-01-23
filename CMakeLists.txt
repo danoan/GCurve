@@ -24,8 +24,8 @@ set(USE_REMOTE_REPOSITORIES ON CACHE BOOL "Pull external repositories from GitHu
 
 project(gcurve)
 
-set(VERSION_GCURVE_CORE master)
-set(VERSION_GCURVE_UTILS master)
+set(VERSION_GCURVE_CORE v0.2)
+set(VERSION_GCURVE_UTILS v0.2)
 
 message("Project Root Dir: ${CMAKE_SOURCE_DIR}")
 message("Build files at: ${CMAKE_BINARY_DIR}")
